@@ -12,7 +12,7 @@ namespace InventoryManagement.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-LP5KLPE\SQLEXPRESS2017;Database=Inventory;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=localhost\SQLEXPRESS01;Database=Inventory;Trusted_Connection=True;");
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }

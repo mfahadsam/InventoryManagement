@@ -307,3 +307,6 @@ C:\Users\FAHAD\source\repos\InventoryManagement\obj\Debug\netcoreapp3.1\Razor\Vi
 C:\Users\FAHAD\source\repos\InventoryManagement\bin\Debug\netcoreapp3.1\libman.json
 C:\Users\FAHAD\source\repos\InventoryManagement\obj\Debug\netcoreapp3.1\InventoryManagement.csproj.AssemblyReference.cache
 C:\Users\FAHAD\source\repos\InventoryManagement\obj\Debug\netcoreapp3.1\Razor\Views\Product\Create.cshtml.g.cs
+C:\Users\Administrator\source\repos\InventoryManagement\bin\Debug\netcoreapp3.1\libman.json
+C:\Users\Administrator\source\repos\InventoryManagement\obj\Debug\netcoreapp3.1\Razor\Views\Category\Edit.cshtml.g.cs
+C:\Users\Administrator\source\repos\InventoryManagement\obj\Debug\netcoreapp3.1\Razor\Views\Product\Create.cshtml.g.cs
