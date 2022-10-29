@@ -5,36 +5,182 @@
 }
 
 
+<div class="row">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="col-md-6">
+
+            </div>
+            <div class="col-md-6">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
 <h1>&nbsp;&nbsp;Product List</h1>
 <a asp-action="Create" asp-controller="Product" class="btn btn-primary m-2">Create Product</a>
 
-<table class="table table-bordered table-hover table-striped">
+<div class="row">
+    <div class="col-md-8 offset-4">
+        <div class="col-md-4">
+            <label class="control-label"></label>
+            <select id="CategoryId" class="form-control" asp-items="@ViewBag.CategoryList">
+                <option value="-1">Select Category</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label class="control-label"></label>
+            <select id="BrandId" class="form-control" asp-items="@ViewBag.BrandList">
+                <option value="-1">Select Brand</option>
+            </select>
+
+        </div>
+
+
+        <div class="col-md-4 py-2 mb-5">
+            <button type="button" class="btn btn-default btn-md float-right" data-toggle="modal" data-target="#advancedSearchModal" id="advancedsearch-button" onclick="popupSearch()">
+                <span class="fas fa-search fa-fw" aria-hidden="true"></span> Advanced Search
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<table class="table table-bordered table-hover table-striped" id="ProductTable">
     <thead>
         <tr>
-            <th>Product ID</th>
+            <th>Product Code</th>
             <th>Product Name</th>
             <th>Sale Price</th>
-            <th>Category ID</th>
-
-
+            <th>Qty</th>
+            <th>Category</th>
+            <th>Brand</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.ProductId</td>
-                <td>@item.Name</td>
-                <td>@item.SalePrice</td>
-                <td>@item.CategoryId</td>
-
-            </tr>
-
-        }
-
     </tbody>
 
 </table>
+
+<div class="modal fade show" id="modal-lg" style="display: none; padding-right: 17px;" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Product</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="divid">
+
+                </div>
+
+            </div>
+            @*<div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="modal fade show" id="modal-lg-Del" style="display: none; padding-right: 17px;" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Product</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="dividdelete">
+
+                </div>
+
+            </div>
+            @*<div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div>
+
+    </div>
+
+</div>
+
+
+@*<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary list-panel"
+             id="list-panel">
+            <div class="panel-heading list-panel-heading">
+                <h1 class="panel-title list-panel-title">
+                    Assets
+                </h1>
+                <button type="button"
+                        class="btn btn-default btn-md"
+                        data-toggle="modal"
+                        data-target="#advancedSearchModal"
+                        id="advancedsearch-button">
+                    <span class="glyphicon glyphicon-search"
+                          aria-hidden="true"></span> Advanced Search
+                </button>
+            </div>
+            <div class="panel-body">
+                <table id="assets-data-table"
+                       class="table table-striped table-bordered"
+                       style="width:100%;">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+
+<div class="modal fade show" id="modal-lg-AdvanceSearch" style="display: none; padding-right: 17px;" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search Product</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <table id="assets-data-table"
+                       class="table table-striped table-bordered"
+                       style="width:100%;">
+                </table>
+
+                @*<div id="dividsearch">
+
+                    </div>*@
+
+            </div>
+            @*<div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>*@
+        </div>
+
+    </div>
+
+</div>
+
+
 
 
 
@@ -45,56 +191,180 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">-->
-                <!-- general form elements -->
-                <!--<div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title">CreateProduct</h3>
-                    </div>-->
-                    <!-- /.card-header -->
-                    <!-- form start -->
-                    <!--<form role="form">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputFile">File input</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" id="">Upload</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                            </div>
-                        </div>-->
-                        <!-- /.card-body -->
-
-                        <!--<div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
-                </div>-->
-                <!-- /.card -->
-                <!-- /.col-lg-6 -->
-            <!--</div>
-
-
-        </div>-->
-        <!-- /.card-body -->
-    <!--</div>-->
-    <!-- /.card -->
+<!-- general form elements -->
+<!--<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">CreateProduct</h3>
+    </div>-->
+<!-- /.card-header -->
+<!-- form start -->
+<!--<form role="form">
+    <div class="card-body">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputFile">File input</label>
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="exampleInputFile">
+                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                </div>
+                <div class="input-group-append">
+                    <span class="input-group-text" id="">Upload</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+    </div>-->
+<!-- /.card-body -->
+<!--<div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>-->
+<!-- /.card -->
+<!-- /.col-lg-6 -->
+<!--</div>
 
 
+</div>-->
+<!-- /.card-body -->
 <!--</div>-->
+<!-- /.card -->
+<!--</div>-->
+
+@section scripts{
+
+
+
+
+    <script>
+        //$(document).ready(function () {
+        //    $('#ProductTable').DataTable();
+        //});
+
+        $("bbb").click(function () {
+
+
+        });
+
+  
+
+
+
+        function Popup(u) {
+
+            $("#modal-lg").modal('show');
+            $.get('/product/edit/' + u, function (data) {
+
+                $("#divid").html("");
+                $("#divid").html(data);
+                $('#modal-lg').on('hidden.bs.modal', function (e) {
+                    popupSearch()
+                })
+            })
+
+        }
+
+        function popupDelete(d) {
+            $("#modal-lg-Del").modal('show');
+            $.get('/product/DeleteProduct?Id=' + d, function (data) {
+
+                $("#dividdelete").html("");
+                $("#dividdelete").html(data);
+            })
+      
+            $('#modal-lg-Del').on('hidden.bs.modal', function (e) {
+                popupSearch()
+            })
+
+        }
+
+
+        function popupSearch() {
+            debugger
+
+            $.ajax({
+                url: '/Product/AdvanceSearchViewModal',
+                datatype: JSON,
+                data: { BrandId: $('#BrandId').val(), CategoryId: $('#CategoryId').val() },
+                success: function (kkk) {
+                    if ($.fn.DataTable.isDataTable('#ProductTable')) {
+                        $('#ProductTable').DataTable().destroy();
+                    }
+                    $('#ProductTable').dataTable({
+                        data: kkk.data,  ///Json(new {data=''});  ///ProductID  == productID //network reposne
+                        columns: [
+                            { data: 'productId' },
+                            { data: 'name' },
+                            { data: 'salePrice' },
+                            { data: 'qty' },                           
+                            { data: 'categoryname' },
+                            { data: 'brandname' },
+                            {
+                                render: function (a, b, c) {
+                                
+                                    return '<a href="javascript:void(0)" onclick="Popup('+c.productId+')" class="btn btn-primary">Edit</a>' + "|"
+                                        + '<a class="btn btn-danger" href="javascript:void(0)" onclick="popupDelete(' + c.productId +')">Delete</a>'
+                                }
+                            },
+                          
+                            
+
+                        ],
+                    });
+                }
+            })
+
+        }
+
+                    //$(function () {
+                    //    $("#ProductTable").DataTable();
+                    //})
+    </script>
+
+
+
+
+}
+
+
+<!--foreach (var item in Model)
+       {
+           <tr>
+               <td>item.ProductId</td>
+               <td>item.Name</td>
+               <td>item.SalePrice</td>
+               <td>
+                   if (item.Category != null)
+                   {
+                       item.Category.Name
+                   }
+
+               </td>
+               <td>
+                   if (item.Brand != null)
+                   {
+                       item.Brand.Name
+                   }
+               </td>
+               <td>
+                   <button type="button" class="btn btn-default" onclick="Popup(item.ProductId)">EDIT</button>
+               </td>
+               <td>
+                   <button type="button" class="btn btn-default" onclick="popupDelete(item.ProductId)">DELETE</button>
+               </td>-->
+<!--*<td>Html.ActionLink("Edit", "Edit", "Product",  new { id = item.ProductId } , new {class = "btn btn-default", data_toggle = "modal", data_target ="#modal-lg" })</td>*
+*<td>Html.ActionLink("Edit", "Edit", new { id = item.ProductId } , class="btn btn-default" data-toggle="modal" data-target="#modal-lg")</td>*-->
+<!--</tr>
+
+}-->

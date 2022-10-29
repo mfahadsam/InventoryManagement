@@ -14,6 +14,6 @@ namespace InventoryManagement.Models
         public string Description { get; set; }
         public int CreatedBy { get; set; }
 
-        public virtual IEnumerable<Product> Product { get; set; }
+        public  List<Product> Product { get; set; }
     }
 }

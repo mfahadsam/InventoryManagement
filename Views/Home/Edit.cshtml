@@ -1,0 +1,45 @@
+﻿@model InventoryManagement.Models.Allotment
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h4>Edit Customer</h4>
+<hr />
+<form action="/Home/Edit" method="post" data-ajax="true" data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete">
+    <div class="row">
+        <div class="container">
+            <div class="col-md-4">
+                <input type="hidden" asp-for="AllotmentId" />
+                <div class="form-group">
+                    <label asp-for="CustomerId" class="control-label"></label>
+                    <select asp-for="CustomerId" asp-items="ViewBag.CustomerList" class="form-control">
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="ProductId" class="control-label"></label>
+                    <select asp-for="ProductId" asp-items="ViewBag.ProductList" class="form-control">
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="submit" value="Edit" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

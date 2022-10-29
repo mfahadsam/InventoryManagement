@@ -1,0 +1,53 @@
+﻿@model InventoryManagement.Models.Product
+
+
+@{
+    ViewData["Title"] = "Search";
+    Layout = null;
+}
+
+
+
+<form action="/Product/AdvanceSearchViewModal" method="get" data-ajax="true" data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete">
+    <div class="row">
+        <div class="col-md-4">
+            <input type="hidden" asp-for="ProductId" />
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="SalePrice" class="control-label"></label>
+                <input asp-for="SalePrice" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Qty" class="control-label"></label>
+                <input asp-for="Qty" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryList">
+                    <option></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BrandId" class="control-label"></label>
+                <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandList">
+                    <option></option>
+                </select>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+
+    </form>
+

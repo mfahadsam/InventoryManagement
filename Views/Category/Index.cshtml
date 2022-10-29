@@ -1,11 +1,9 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/_Layout.cshtml";
 }
 
 <h3 class="m-1">Category List</h3>
-
 
 <a asp-controller="Category" asp-action="Create" class="btn btn-primary m-1">Create</a>
 
@@ -41,7 +39,10 @@
                             <tr>
                                 <td>@item.CategoryId</td>
                                 <td>@item.Name</td>
-                                <td><a asp-controller="Category" asp-action="Edit" asp-route-id="@item.CategoryId" >Edit</a></td>
+                                <td>
+                                    <a asp-controller="Category" asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> | 
+                                    <a asp-controller="Category" asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
+                                </td>
                             </tr>
                         }
 

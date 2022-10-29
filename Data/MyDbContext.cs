@@ -9,14 +9,20 @@ namespace InventoryManagement.Data
 {
     public class MyDbContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+        public MyDbContext(DbContextOptions<MyDbContext> options)
+            : base(options)
         {
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer(@"Server=localhost\SQLEXPRESS01;Database=Inventory;Trusted_Connection=True;");
         }
+        protected override void OnModelCreating(ModelBuilder builder)
+        { }
+     
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<Allotment> Allotments { get; set; }
 
     }
 }

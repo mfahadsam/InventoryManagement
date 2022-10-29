@@ -17,15 +17,14 @@ namespace InventoryManagement.Models
         public decimal SalePrice { get; set; }
         public int Qty { get; set; }
 
-        [ForeignKey("Category")]
         public int? CategoryId { get; set; }
-        public virtual Category Category { get; set; }
+        public Category Category { get; set; }
 
-
-        [ForeignKey("Brand")]
         public int? BrandId { get; set; }
-        public virtual Brand Brand { get; set; }
+        public Brand Brand { get; set; }
 
+
+        public List<Allotment> Allotments  { get; set; }
     }
     
 }

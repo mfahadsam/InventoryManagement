@@ -1,0 +1,125 @@
+﻿@model InventoryManagement.Models.Product
+
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = null;
+}
+
+
+
+
+@*<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg">
+    Launch Large Modal
+</button>*@
+
+<form action="/Product/Edit" method="post" data-ajax="true" data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete">
+    <div class="row">
+        <div class="container">
+            <div class="col-md-4">
+                <input type="hidden" asp-for="ProductId" />
+
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="SalePrice" class="control-label"></label>
+                    <input asp-for="SalePrice" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="Qty" class="control-label"></label>
+                    <input asp-for="Qty" class="form-control" />
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="CategoryId" class="control-label"></label>
+
+                        <select asp-for="CategoryId" asp-items="ViewBag.CategoryList" class="form-control">
+                        </select>
+                        @*<input asp-for="CategoryId" class="form-control" />*@
+
+                        @*<select class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.CategoryList,"CategoryId","Name"))">
+                    <option>---Please Select---</option>
+                </select>*@
+
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="BrandId" class="control-label"></label>
+
+                        <select asp-for="BrandId" asp-items="ViewBag.BrandList" class="form-control">
+                        </select>
+                        @*<input asp-for="CategoryId" class="form-control" />*@
+
+                        @*<select class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.CategoryList,"CategoryId","Name"))">
+                    <option>---Please Select---</option>
+                </select>*@
+
+
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="submit" value="Edit" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+</form>
+
+
+
+@*<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-lg">
+    Launch Success Modal
+</button>*@
+
+
+
+@*<div class="modal-content" id="modal-lg"  >
+    <div class="modal-header">
+        <h4 class="modal-title">Large Modal</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="hidden" asp-for="ProductId" />
+
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                </div>
+              
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+            <input type="submit" value="Save" class="btn btn-primary" />
+        
+    </div>
+</div>*@

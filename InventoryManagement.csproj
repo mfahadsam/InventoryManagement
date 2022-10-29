@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -9,6 +9,12 @@
     <Content Remove="wwwroot\lib\**" />
     <EmbeddedResource Remove="wwwroot\lib\**" />
     <None Remove="wwwroot\lib\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\RDLCReport\Report1.rdlc" />
+    <Content Remove="wwwroot\RDLCReport\Report2.rdlc" />
+    <Content Remove="wwwroot\RDLCReport\Report3.rdlc" />
   </ItemGroup>
 
   <ItemGroup>
@@ -1959,9 +1965,14 @@
     <None Include="wwwroot\plugins\uplot\uPlot.iife.js" />
     <None Include="wwwroot\plugins\uplot\uPlot.iife.min.js" />
     <None Include="wwwroot\plugins\uplot\uPlot.min.css" />
+    <None Include="wwwroot\RDLCReport\Report1.rdlc" />
+    <None Include="wwwroot\RDLCReport\Report2.rdlc" />
+    <None Include="wwwroot\RDLCReport\Report3.rdlc" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.12">
       <PrivateAssets>all</PrivateAssets>
@@ -1973,6 +1984,28 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.0" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\HHC\source\repos\MyRDLCReport\MyRDLCReport.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="DataSet3.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DataSet3.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet3.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

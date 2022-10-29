@@ -4,9 +4,7 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/_Layout.cshtml";
 }
-<link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<script src="~/jquery/jquery.min.js"></script>
-<script src="~/twitter-bootstrap/js/bootstrap.min.js"></script>
+
 
 <h1 class="ml-2">Create</h1>
 
@@ -14,7 +12,9 @@
 <hr />
 <div class="row">
     <div class="col-md-4 ml-2">
-        <form asp-action="Create">
+
+
+        <form asp-action="Create" data-ajax="true" data-ajax-begin="onAjaxBegin" data-ajax-complete="onAjaxComplete">
 
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -33,13 +33,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="CategoryId" class="control-label"></label>
-                <select class="form-control" id="categorys">
+                @*<select class="form-control" asp-items="ViewBag.CategroyList as SelectList">
+                    </select>*@
+
+                <select class="form-control" asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.CategoryList,"CategoryId","Name"))">
                     <option>---Please Select---</option>
                 </select>
+
+                <!--<select class="form-control" id="categorys">-->
+                @*<option>---Please Select---</option>*@
+                <!--</select>-->
             </div>
             <div class="form-group">
                 <label asp-for="BrandId" class="control-label"></label>
-                <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
+                <select asp-for="BrandId" class="form-control" asp-items="@(new SelectList(ViewBag.BrandList,"BrandId","Name"))">
+                    <option>---Please Select---</option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -48,29 +57,38 @@
     </div>
 </div>
 
-<script type="text/javascript">
+@section Scripts{
 
-    $(document).ready(function () {
-        $.ajax({
-            type: 'GET',
-            url: '/Category/GetCategorys',
-            // data: {number1: val1, number2: val2},
-            /*dataType: "text",*/
-            success: function (result) {
-                $('#categorys').html();
-                $('#categorys').append('<option>--Please Select--</option>');
-                var html;
-                for (var i = 0; i < result.length; i++) {
-                    html += '<option value="' + result[i].categoryId + '">"' + result[i].name + '"</option>'
+
+    @*<script src=""></script>*@
+    @*<script type="text/javascript">
+
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/Category/GetCategorys',
+                // data: {number1: val1, number2: val2},
+                /*dataType: "text",*/
+                success: function (result) {
+                    $('#categorys').html();
+                    $('#categorys').append('<option>--Please Select--</option>');
+                    var html;
+                    for (var i = 0; i < result.length; i++) {
+                        html += '<option value="' + result[i].categoryId + '">"' + result[i].name + '"</option>'
+                    }
+
+                    $('#categorys').append(html);
+
+                },
+                error: function (error) {
+                    alert(error);
                 }
 
-                $('#categorys').append(html);
-
-            },
-            error: function (error) {
-                alert(error);
-            }
-
+            });
         });
-    });
-</script>
+
+
+        </script>*@
+}
+
+

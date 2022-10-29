@@ -10,7 +10,13 @@ namespace InventoryManagement.Controllers
 {
     public class CategoryController : Controller
     {
-        MyDbContext context = new MyDbContext();
+        private readonly MyDbContext context;
+
+        public CategoryController(MyDbContext _context)
+        {
+            context = _context;
+
+        }
         public IActionResult Index()
         {
 
@@ -41,7 +47,11 @@ namespace InventoryManagement.Controllers
         public IActionResult Create(Category model)
         {
             Category objList = new Category() { Name = model.Name};
+
+            Brand objbrand = new Brand();
+
             context.Categories.Add(objList);
+            context.Brands.Add(objbrand);
             context.SaveChanges();
             
             return RedirectToAction("Index");
@@ -50,10 +60,12 @@ namespace InventoryManagement.Controllers
         public IActionResult Edit(int id)
         {
             //Find Data from database based on id asp-route-id="@item.CategoryId"
-            var obj = context.Categories.Find(id);
+            var category = context.Categories.Where(x => x.CategoryId == id).FirstOrDefault();
+
+            return View(category);
 
 
-            return View(obj);
+            //return View(category);
         }
 
         [HttpPost]
@@ -65,6 +77,22 @@ namespace InventoryManagement.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+           var data = context.Categories.Find(id);
+
+            return View(data);
+        }
+        [HttpPost]
+        public IActionResult Delete(Category category)
+        {
+            var data = context.Categories.Find(category.CategoryId);
+            context.Categories.Remove(data);
+            context.SaveChanges();
+            return View();
+        }
+
         //[HttpPost]
         //public IActionResult Edit(int CategoryId, string Name)
         //{
@@ -74,12 +102,12 @@ namespace InventoryManagement.Controllers
         //    return RedirectToAction("Index");
         //}
 
-        public JsonResult GetCategorys()
-        {
-            var objList = context.Categories.ToList();
-            return Json(objList);
+        //public JsonResult GetCategorys()
+        //{
+        //    var objList = context.Categories.ToList();
+        //    return Json(objList);
 
-        }
+        //}
 
     }
 }
